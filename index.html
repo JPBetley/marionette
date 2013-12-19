@@ -52,11 +52,8 @@
 
     </div><!-- /.container -->
 
-      <script type="text/template" id="static-template">
-          <p>This replaced existing content using Marionette</p>
-      </script>
-      <script type= "text/template" id= "list-item-template" >
-          <li> One item </li>
+      <script type="text/template" id="contact-template">
+          <p><%= firstName %> <%= lastName %></p>
       </script>
 
 
@@ -75,23 +72,36 @@
       <script type="text/javascript">
           var ContactManager = new Marionette.Application();
 
+          ContactManager.Contact = Backbone.Model.extend({
+              defaults: {
+                  phoneNumber: "No phone number!"
+              }
+          });
+
           ContactManager.addRegions({
               mainRegion: '#main-region'
           });
 
-          ContactManager.StaticView = Marionette.ItemView.extend({
-              id: 'static-view',
-              tagName: 'span',
-              className: 'instruction',
-              template: '#static-template'
+          ContactManager.ContactView = Marionette.ItemView.extend({
+              template: '#contact-template',
+              events: {
+                  "click p": "alertPhoneNumber"
+              },
+              alertPhoneNumber: function () {
+                  alert(this.model.escape("phoneNumber"));
+              }
           });
 
           ContactManager.on('initialize:after', function () {
-              var staticView = new ContactManager.StaticView({ 
-                tagName: 'ul',
-                template: '#list-item-template' 
+              var alice = new ContactManager.Contact({
+                  firstName: 'Alice',
+                  lastName: 'Arten',
+                  phoneNumber: '555-0184'
               });
-              ContactManager.mainRegion.show(staticView);
+              var aliceView = new ContactManager.ContactView({
+                  model: alice
+              });
+              ContactManager.mainRegion.show(aliceView);
           });
 
           ContactManager.start();
