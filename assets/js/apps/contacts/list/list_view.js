@@ -2,7 +2,7 @@ ContactManager.module("ContactsApp.List", function (List, ContactManager, Backbo
     
     List.Contact = Marionette.ItemView.extend({
         tagName: 'li',
-        template: '#contact-list-item'
+        template: _.template(List.Templates.listItemView)
     });
 
     List.Contacts = Marionette.CollectionView.extend({
