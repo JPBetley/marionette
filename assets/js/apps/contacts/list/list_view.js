@@ -5,12 +5,19 @@ ContactManager.module("ContactsApp.List", function (List, ContactManager, Backbo
         template: '#contact-list-item',
 
         events: {
-            "click": "highlightName"
+            "click": "highlightName",
+            "click button": "deleteClicked"
         },
 
-        highlightName: function () {
+        highlightName: function (e) {
             this.$el.toggleClass("warning");
+        },
+
+        deleteClicked: function (e) {
+            e.stopPropagation();
+            alert("Clicked Delete");
         }
+
     });
 
     List.Contacts = Marionette.CompositeView.extend({
