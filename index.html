@@ -51,9 +51,9 @@
 
     </div><!-- /.container -->
 
-      <script type="text/template" id="contact-list-item">
-          <%= firstName %> <%= lastName %>
-      </script>
+    <script type="text/template" id="contact-list-item">
+        <%= firstName %> <%= lastName %>
+    </script>
 
 
     <!-- Bootstrap core JavaScript
@@ -66,73 +66,13 @@
     <script src="assets/js/vendor/backbone.js"></script>
     <script src="assets/js/vendor/backbone.marionette.js"></script>
 
-      
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/entities/contact.js"></script>
+    <script src="assets/js/apps/contacts/list/list_view.js"></script>
+    <script src="assets/js/apps/contacts/list/list_controller.js"></script>
 
-      <script type="text/javascript">
-          var ContactManager = new Marionette.Application();
-
-          ContactManager.Contact = Backbone.Model.extend({
-              defaults: {
-                  phoneNumber: "No phone number!"
-              }
-          });
-
-          ContactManager.addRegions({
-              mainRegion: '#main-region'
-          });
-
-          ContactManager.ContactItemView = Marionette.ItemView.extend({
-              tagName: 'li',
-              template: '#contact-list-item'
-          });
-
-          ContactManager.ContactsView = Marionette.CollectionView.extend({
-              tagName: "ul",
-              itemView: ContactManager.ContactItemView
-          });
-
-          ContactManager.ContactCollection = Backbone.Collection.extend({
-              model: ContactManager.Contact,
-              comparator: function (contact) {
-                  return contact.attributes.firstName + " " + contact.attributes.lastName;
-              }
-          });
-
-          ContactManager.on('initialize:after', function () {
-              var contacts = new ContactManager.ContactCollection([
-                  {
-                      firstName: "Bob",
-                      lastName: "Brigham",
-                      phoneNumber: "555-5555"
-                  },
-                  {
-                      firstName: 'Alice',
-                      lastName: 'Tommen',
-                      phoneNumber: '555-0184'
-                  },
-                  {
-                      firstName: 'Alice',
-                      lastName: 'Blart',
-                      phoneNumber: '555-0184'
-                  },
-                  {
-                      firstName: 'Alice',
-                      lastName: 'Arten',
-                      phoneNumber: '555-0184'
-                  },
-                  {
-                      firstName: 'Charlie',
-                      lastName: 'Chambell',
-                      phoneNumber: '555-0184'
-                  }
-              ]);
-              var contactsListView = new ContactManager.ContactsView({
-                  collection: contacts
-              });
-              ContactManager.mainRegion.show(contactsListView);
-          });
-
-          ContactManager.start();
-      </script>
+    <script type="text/javascript">
+        ContactManager.start();
+    </script>
   </body>
 </html>
