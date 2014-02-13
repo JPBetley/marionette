@@ -2,8 +2,7 @@ ContactManager.module("ContactsApp.Show", function (Show, ContactManager, Backbo
 
     Show.Controller = {
         showContact: function (id) {
-            var contacts = ContactManager.request("contact:entities");
-            var model = contacts.get(id);
+            var contacts = ContactManager.request("contact:entity", id);
             var contactView;
 
             if (model !== undefined) {
