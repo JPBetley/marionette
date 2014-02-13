@@ -17,8 +17,11 @@ ContactManager.module("ContactsApp.Edit", function (Edit, ContactManager, Backbo
                     });
 
                     contactView.on("form:submit", function (data) {
-                        contact.save(data);
-                        ContactManager.trigger("contact:show", contact.get("id"));
+                        if (contact.save(data)) {
+                            ContactManager.trigger("contact:show", contact.get("id"));
+                        } else {
+                            contactView.triggerMethod("form:data:invalid", contact.validationError);
+                        }
                     });
                 } else {
                     contactView = new new ContactManager.ContactsApp.Show.MissingContact();
