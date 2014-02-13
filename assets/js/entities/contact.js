@@ -41,6 +41,8 @@ ContactManager.module("Entities", function (Entities, ContactManager, Backbone, 
         contacts.forEach(function (contact) {
             contact.save();
         });
+
+        return contacts;
     };
 
     var API = {

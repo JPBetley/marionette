@@ -22,6 +22,6 @@ ContactManager.module("Entities", function (Entities, ContactManager, Backbone, 
     };
 
     Entities.configureStorage = function (entity) {
-        _.extend(entity.prototype, StorageMixin);
+        _.extend(entity.prototype, new StorageMixin(entity.prototype));
     };
 });
