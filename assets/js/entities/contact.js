@@ -4,6 +4,8 @@ ContactManager.module("Entities", function (Entities, ContactManager, Backbone, 
         urlRoot: "contacts"
     });
 
+    Entities.configureStorage(Entities.Contact);
+
     Entities.ContactCollection = Backbone.Collection.extend({
         url: "contacts",
         model: Entities.Contact,
@@ -12,10 +14,10 @@ ContactManager.module("Entities", function (Entities, ContactManager, Backbone, 
         }
     });
 
-    var contacts;
+    Entities.configureStorage(Entities.ContactCollection);
 
     var initializeContacts = function () {
-        contacts = new Entities.ContactCollection([
+        var contacts = new Entities.ContactCollection([
             {
                 id: 1,
                 firstName: "Bob",
@@ -35,12 +37,18 @@ ContactManager.module("Entities", function (Entities, ContactManager, Backbone, 
                 phoneNumber: '555-0184'
             }
         ]);
+
+        contacts.forEach(function (contact) {
+            contact.save();
+        });
     };
 
     var API = {
         getContactEntities: function () {
-            if (contacts === undefined) {
-                initializeContacts();
+            var contacts = new Entities.ContactCollection();
+            contacts.fetch();
+            if (contacts.length === 0) {
+                return initializeContacts();
             }
             return contacts;
         }
