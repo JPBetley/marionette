@@ -8,12 +8,17 @@ ContactManager.module("ContactsApp.Edit", function (Edit, ContactManager, Backbo
 
             var fetchingContact = ContactManager.request("contact:entity", id);
 
-            $.when(fetchingContact).done(function (model) {
+            $.when(fetchingContact).done(function (contact) {
                 var contactView;
 
-                if (model !== undefined) {
+                if (contact !== undefined) {
                     contactView = new Edit.Contact({
-                        model: model
+                        model: contact
+                    });
+
+                    contactView.on("form:submit", function (data) {
+                        contact.save(data);
+                        ContactManager.trigger("contact:show", contact.get("id"));
                     });
                 } else {
                     contactView = new new ContactManager.ContactsApp.Show.MissingContact();
