@@ -1,7 +1,7 @@
-ContactManager.module("ContactsApp.Show", function (Show, ContactManager, Backbone, Marionette, $, _) {
+ContactManager.module("ContactsApp.Edit", function (Edit, ContactManager, Backbone, Marionette, $, _) {
 
-    Show.Controller = {
-        showContact: function (id) {
+    Edit.Controller = {
+        editContact: function (id) {
             var loadingView = new ContactManager.Common.Views.Loading();
             ContactManager.mainRegion.show(loadingView);
 
@@ -12,16 +12,11 @@ ContactManager.module("ContactsApp.Show", function (Show, ContactManager, Backbo
                 var contactView;
 
                 if (model !== undefined) {
-                    contactView = new Show.Contact({
+                    contactView = new Edit.Contact({
                         model: model
                     });
-
-                    contactView.on("contact:edit", function (contact) {
-                        ContactManager.trigger("contact:edit", contact.get("id"));
-                    });
-
                 } else {
-                    contactView = new Show.MissingContact();
+                    contactView = new new ContactManager.ContactsApp.Show.MissingContact();
                 }
 
                 ContactManager.mainRegion.show(contactView);
