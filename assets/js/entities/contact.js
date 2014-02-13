@@ -42,22 +42,44 @@ ContactManager.module("Entities", function (Entities, ContactManager, Backbone, 
             contact.save();
         });
 
-        return contacts;
+        return contacts.models;
     };
 
     var API = {
         getContactEntity: function (contactId) {
             var contact = new Entities.Contact({ id: contactId });
-            contact.fetch();
-            return contact;
+            var defer = $.Deferred();
+            setTimeout(function () {
+                contact.fetch({
+                    success: function (data) {
+                        defer.resolve(data);
+                    },
+                    error: function (data) {
+                        defer.resolve(undefined);
+                    }
+                });
+            }, 2000);
+            return defer.promise();
         },
         getContactEntities: function () {
             var contacts = new Entities.ContactCollection();
-            contacts.fetch();
-            if (contacts.length === 0) {
-                return initializeContacts();
-            }
-            return contacts;
+            var defer = $.Deferred();
+            setTimeout(function () {
+                contacts.fetch({
+                    success: function (data) {
+                        defer.resolve(data);
+                    }
+                });
+            }, 2000);
+            var promise = defer.promise();
+            $.when(promise).done(function (contacts) {
+                if (contacts.length === 0) {
+                    var models = initializeContacts();
+                    contacts.reset(models);
+                }
+            });
+
+            return promise;
         }
     };
 

@@ -2,18 +2,21 @@ ContactManager.module("ContactsApp.Show", function (Show, ContactManager, Backbo
 
     Show.Controller = {
         showContact: function (id) {
-            var model = ContactManager.request("contact:entity", id);
-            var contactView;
+            var fetchingContact = ContactManager.request("contact:entity", id);
 
-            if (model !== undefined) {
-                contactView = new Show.Contact({
-                    model: model
-                });
-            } else {
-                contactView = new Show.MissingContact();
-            }
+            $.when(fetchingContact).done(function (model) {
+                var contactView;
 
-            ContactManager.mainRegion.show(contactView);
+                if (model !== undefined) {
+                    contactView = new Show.Contact({
+                        model: model
+                    });
+                } else {
+                    contactView = new Show.MissingContact();
+                }
+
+                ContactManager.mainRegion.show(contactView);
+            });
         }
     };
 
