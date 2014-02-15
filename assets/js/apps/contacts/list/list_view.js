@@ -10,7 +10,7 @@ ContactManager.module("ContactsApp.List", function (List, ContactManager, Backbo
     });
 
     List.Panel = Marionette.ItemView.extend({
-        template: '#contacts-list-panel'
+        template: '#contact-list-panel'
     });
 
     List.Contact = Marionette.ItemView.extend({
