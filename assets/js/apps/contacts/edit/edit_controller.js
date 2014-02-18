@@ -13,7 +13,8 @@ ContactManager.module("ContactsApp.Edit", function (Edit, ContactManager, Backbo
 
                 if (contact !== undefined) {
                     contactView = new Edit.Contact({
-                        model: contact
+                        model: contact,
+                        generateTitle: true
                     });
 
                     contactView.on("form:submit", function (data) {
