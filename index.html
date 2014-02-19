@@ -128,7 +128,15 @@
         </script>
 
         <script type="text/template" id="contact-list-panel">
-            <button class="btn btn-primary js-new">New Contact</div>
+            <button class="btn btn-primary js-new">New Contact</button>
+            <form id="filter-form" class="col-md-3 form-inline pull-right">
+                <div class="input-group">
+                    <input type="text" class="form-control js-filter-criterion">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default">Filter Contacts</button>
+                    </span>
+                </div>
+            </form>
         </script>
 
         <!-- Bootstrap core JavaScript
