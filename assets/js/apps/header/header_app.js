@@ -6,7 +6,7 @@
     };
 
     ContactManager.commands.setHandler("set:active:header", function (name) {
-        ContactManager.Header.List.Controller.setActiveHeader(name);
+        Header.List.Controller.setActiveHeader(name);
     });
 
     Header.on("start", function () {

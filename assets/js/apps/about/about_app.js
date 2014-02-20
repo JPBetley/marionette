@@ -8,6 +8,7 @@
     var API = {
         showAbout: function () {
             AboutApp.Show.Controller.showAbout();
+            ContactManager.execute('set:active:header', 'about');
         }
     };
 
