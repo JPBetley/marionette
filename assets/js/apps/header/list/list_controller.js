@@ -8,6 +8,11 @@
                 ContactManager.trigger('contacts:list');
             });
 
+            headers.on('itemview:navigate', function (childView, model) {
+                var trigger = model.get('navigationTrigger');
+                ContactManager.trigger(trigger);
+            });
+
             ContactManager.headerRegion.show(headers);
         },
 
