@@ -20,10 +20,18 @@ ContactManager.module("ContactsApp.List", function (List, ContactManager, Backbo
             'submit #filter-form': 'filterContacts'
         },
 
+        ui: {
+            criterion: 'input.js-filter-criterion'
+        },
+
         filterContacts: function (e) {
             e.preventDefault();
-            var criterion = this.$('.js-filter-criterion').val();
+            var criterion = this.ui.criterion.val();
             this.trigger("contacts:filter", criterion);
+        },
+
+        onSetFilterCriterion: function (criterion) {
+            this.ui.criterion.val(criterion);
         }
     });
 
@@ -78,11 +86,18 @@ ContactManager.module("ContactsApp.List", function (List, ContactManager, Backbo
 
     });
 
+    var noContactsView = Marionette.ItemView.extend({
+        template: '#contact-list-none',
+        tagName: 'tr',
+        className: 'warning'
+    });
+
     List.Contacts = Marionette.CompositeView.extend({
         tagName: "table",
         className: "table table-hover",
         template: '#contact-list',
         itemView: List.Contact,
+        emptyView: noContactsView,
         itemViewContainer: 'tbody',
 
         initialize: function () {

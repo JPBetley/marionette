@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -62,8 +62,7 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
-            </tbody>
+            <tbody></tbody>
         </script>
 
         <script type="text/template" id="contact-list-item">
@@ -95,7 +94,7 @@
         </script>
 
         <script type="text/template" id="missing-contact-view">
-            <div class="alert alert-danger">This contact doesn't exist!</div> 
+            <div class="alert alert-danger">This contact doesn't exist!</div>
         </script>
 
         <script type="text/template" id="loading-view">
@@ -112,11 +111,11 @@
                 </div>
                 <div class="form-group">
                     <label for="contact-lastName">Last Name:</label>
-                    <input id="contact-lastName" name="lastName" type="text" value="<%= lastName %>" class="form-control"  />
+                    <input id="contact-lastName" name="lastName" type="text" value="<%= lastName %>" class="form-control" />
                 </div>
                 <div class="form-group">
                     <label for="contact-phoneNumber">Phone Number:</label>
-                    <input id="contact-phoneNumber" name="phoneNumber" type="text" value="<%= phoneNumber %>" class="form-control"  />
+                    <input id="contact-phoneNumber" name="phoneNumber" type="text" value="<%= phoneNumber %>" class="form-control" />
                 </div>
                 <button class="btn btn-default js-submit">Save</button>
             </form>
@@ -139,8 +138,17 @@
             </form>
         </script>
 
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
+        <script type="text/template" id="contact-list-none">
+            <td colspan="3">No contacts to display.</td>
+        </script>
+
+        <script type="text/template" id="about-message">
+            <h1>About this application</h1>
+            <p>This application was designed to accompany you during your learning.</p>
+            <p>Hopefully, it has served you well!</p>
+        </script>
+
+        <!-- Bootstrap core JavaScript ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -169,6 +177,9 @@
         <script src="./assets/js/apps/contacts/edit/edit_view.js"></script>
         <script src="./assets/js/apps/contacts/edit/edit_controller.js"></script>
         <script src="./assets/js/apps/contacts/new/new_view.js"></script>
+        <script src="./assets/js/apps/about/about_app.js"></script>
+        <script src="./assets/js/apps/about/show/show_view.js"></script>
+        <script src="./assets/js/apps/about/show/show_controller.js"></script>
 
 
         <script type="text/javascript">
@@ -176,3 +187,4 @@
         </script>
     </body>
 </html>
+
