@@ -1,6 +1,7 @@
 ContactManager.module("ContactsApp", function (ContactsApp, ContactManager, Backbone, Marionette, $, _) {
     ContactsApp.Router = Marionette.AppRouter.extend({
         appRoutes: {
+            "": "listContacts",
             "contacts(/filter/:criterion)": "listContacts",
             "contacts/:id": "showContact",
             "contacts/:id/edit": "editContact"
