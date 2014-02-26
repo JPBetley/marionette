@@ -5,7 +5,8 @@
         underscore: "vendor/underscore",
         json2: "vendor/json2",
         backbone: "vendor/backbone",
-        marionette: "vendor/backbone.marionette"
+        marionette: "vendor/backbone.marionette",
+        "jquery-ui": "vendor/jquery-ui",
     },
 
     shim: {
@@ -19,12 +20,13 @@
         marionette: {
             deps: ['backbone'],
             exports: "Marionette"
+        },
+        'jquery-ui': {
+            deps: ['jquery']
         }
     }
 });
 
-require(['backbone'], function (bb) {
-    console.log('jQuery version: ', $.fn.jquery);
-    console.log('underscore identity call: ', _.identity(5));
-    console.log('Backbone history: ', bb.history);
+require(['app'], function (ContactManager) {
+    ContactManager.start();
 });

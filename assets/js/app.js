@@ -1,17 +1,23 @@
-var ContactManager = new Marionette.Application();
-          
-ContactManager.addRegions({
-    headerRegion: '#header-region',
-    mainRegion: '#main-region',
-    dialogRegion: Marionette.Region.Dialog.extend({
-        el: '#dialog-region'
-    })
-});
+define(['marionette', 'apps/config/marionette/regions/dialog'], function (Marionette) {
 
-ContactManager.on('initialize:after', function () {
+    var ContactManager = new Marionette.Application();
 
-    if (Backbone.history) {
-        Backbone.history.start({ pushState: true });
-    }
+    ContactManager.addRegions({
+        headerRegion: '#header-region',
+        mainRegion: '#main-region',
+        dialogRegion: Marionette.Region.Dialog.extend({
+            el: '#dialog-region'
+        })
+    });
+
+    ContactManager.on('initialize:after', function () {
+
+        if (Backbone.history) {
+            Backbone.history.start({ pushState: true });
+        }
+
+    });
+
+    return ContactManager;
 
 });
